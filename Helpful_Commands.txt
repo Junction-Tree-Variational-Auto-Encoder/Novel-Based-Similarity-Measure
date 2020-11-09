@@ -1,0 +1,11 @@
+
+
+Helpful commands for HPC
+
+ll - show things at location
+cd - change directory
+dos2unix - changes for DOS to unix allowing to execute .sh files in HPC
+bsub < SH_FILE_HERE.sh - submit job to cluster
+bstat - check on jobs submitted to cluster
+____
+cd JTVAE-on-Molecular-Structures
