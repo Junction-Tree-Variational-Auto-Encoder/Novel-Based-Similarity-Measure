@@ -26,6 +26,9 @@
 
 # -- end of LSF options --
 # here follow the commands you want to execute 
+module load python3
+pip3 install --user --upgrade pip
+module unload python3
 
 module load cuda/10.2
 nvidia-smi
