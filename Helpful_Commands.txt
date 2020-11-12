@@ -9,3 +9,17 @@ bsub < SH_FILE_HERE.sh - submit job to cluster
 bstat - check on jobs submitted to cluster
 ____
 cd JTVAE-on-Molecular-Structures
+
+
+__
+
+Pulling on thinlinc (remember to change directory to JTVAE-on-Molecular-Structures):
+command promt:
+
+git pull
+
+if not working, use:
+
+git stash
+git stash drop
+git pull
