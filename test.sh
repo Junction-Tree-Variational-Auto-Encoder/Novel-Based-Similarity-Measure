@@ -38,8 +38,8 @@ module load python
 module load rdkit
 
 pip install --user torch torchvision
-
-python preprocess.py --train ../data/QM9/train.txt --split 100 --jobs 16
+cd JTVAE-on-Molecular-Structures/fat_molvae
+python preprocess.py --train ../QM9/train.txt --split 100 --jobs 16
 mkdir QM9-processed
 mv tensor* QM9-processed
 
