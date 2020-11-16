@@ -23,3 +23,6 @@ if not working, use:
 git stash
 git stash drop
 git pull
+
+login på command prompt:
+ssh s153900@login1.gbar.dtu.dk
