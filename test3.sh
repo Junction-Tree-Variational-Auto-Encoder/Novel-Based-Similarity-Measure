@@ -36,6 +36,6 @@ nvidia-smi
 /appl/cuda/10.2/samples/NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/deviceQuery
 
 
-cd JTVAE-on-Molecular-Structures/python3/fast_molvae
+cd python3/fast_molvae
 python preprocess.py --train ..data/QM9/train.txt --split 100 --jobs 16
 
