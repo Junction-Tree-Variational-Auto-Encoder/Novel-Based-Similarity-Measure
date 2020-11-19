@@ -29,6 +29,7 @@
 module load python3/3.7.5
 module load rdkit/2019_03_1-python-3.7.3
 module load numpy
+pip3 install os-sys
 pip3 install --user torch torchvision
 module load cuda/10.2
 nvidia-smi
