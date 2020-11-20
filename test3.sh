@@ -31,6 +31,8 @@ module load rdkit/2019_03_1-python-3.7.3
 pip3 install --user os-sys
 pip3 install --user numpy
 pip3 install --user torch torchvision
+pip3 install --user tqdm
+
 module load cuda/10.2
 nvidia-smi
 /appl/cuda/10.2/samples/NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/deviceQuery
