@@ -35,17 +35,13 @@ module load cuda/10.2
 nvidia-smi
 /appl/cuda/10.2/samples/NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/deviceQuery
 
-module load python
-module load rdkit
+module load python3/3.7.5
+module load rdkit/2019_03_1-python-3.7.3
+module load numpy
+pip3 install --user torch torchvision
 
-module load python/2.7.18
-virtualenv test-python2
-source test-python2/bin/activate
-pip install future numpy scipy torch
-
-pip install --user torch torchvision
-cd JTVAE-on-Molecular-Structures/fast_molvae
-python preprocess.py --train ../QM9/train.txt --split 100 --jobs 16
+cd JTVAE-on-Molecular-Structures/python3/fast_molvae
+python preprocess.py --train ..data/QM9/train.txt --split 100 --jobs 16
 mkdir QM9-processed
 mv tensor* QM9-processed
 
