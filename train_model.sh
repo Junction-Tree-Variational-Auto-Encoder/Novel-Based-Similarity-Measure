@@ -27,7 +27,7 @@
 # -- end of LSF options --
 # here follow the commands you want to execute 
 
-module load python3/3.7.5
+module load python3/3.7.7
 python3 -m venv venv_1
 source venv_1/bin/activate
 module load rdkit
@@ -37,8 +37,8 @@ nvidia-smi
 /appl/cuda/10.2/samples/NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/deviceQuery
 
 pip install torch===1.7.0 torchvision===0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
-module load pandas 
-module load scipy
-module load numpy
+module load pandas/1.0.3-python-3.7.7
+module load scipy/1.4.1-python-3.7.7
+module load numpy/1.18.2-python-3.7.7-openblas-0.3.9
 
 python3 main_train.py
