@@ -1,6 +1,6 @@
 #BSUB -q gpuv100
 ### -- set the job Name -- 
-#BSUB -J collect_data_ny
+#BSUB -J train_model
 ### -- ask for number of cores (default: 1) -- 
 #BSUB -n 1
 ### -- Select the resources: 1 gpu in exclusive process mode --
@@ -40,5 +40,5 @@ pip install torch===1.7.0 torchvision===0.8.1 -f https://download.pytorch.org/wh
 module load pandas/1.0.3-python-3.7.7
 module load scipy/1.4.1-python-3.7.7
 module load numpy/1.18.2-python-3.7.7-openblas-0.3.9
-
+pip3 install tqdm
 python3 main_train.py
