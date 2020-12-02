@@ -41,5 +41,4 @@ module load pandas
 module load scipy
 module load numpy
 
-cd JTVAE-on-Molecular_Structures/
-main_train.py
+python3 main_train.py
