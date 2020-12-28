@@ -6,7 +6,7 @@ import torch
 
 inp = pd.read_csv('./data/train.txt', names=['SMILES'])
 
-inp['INCHI'] = inp['SMILES'].apply(lambda x: Chem.MolToInchiKey(Chem.MolFromSmiles(x)))
+#inp['INCHI'] = inp['SMILES'].apply(lambda x: Chem.MolToInchiKey(Chem.MolFromSmiles(x)))
 #inp = inp.drop_duplicates(subset=['INCHI'], keep='first')
 
 from fast_molvae.sample import load_model
