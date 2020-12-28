@@ -30,7 +30,7 @@
 module load python3/3.7.7
 python3 -m venv venv_1
 source venv_1/bin/activate
-module load rdkit
+module load rdkit/2019_03_1-python-3.7.3
 
 module load cuda/10.2
 nvidia-smi

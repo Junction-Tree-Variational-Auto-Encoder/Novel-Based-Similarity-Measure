@@ -12,7 +12,7 @@ inp = pd.read_csv('./data/train.txt', names=['SMILES'])
 from fast_molvae.sample import load_model
 model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19')
 
-out_tensor = model.encode_from_smiles(inp['SMILES'])
+out_tensor = model.encode_from_smiles(inp['SMILES'].iloc[0:1000])
 out_numpy = out_tensor.cpu().data.numpy()
 out_df = pd.DataFrame(out_numpy)
 
