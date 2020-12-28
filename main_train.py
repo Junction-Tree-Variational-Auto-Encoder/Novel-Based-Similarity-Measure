@@ -4,12 +4,12 @@ from rdkit import DataStructs, Chem
 from rdkit.Chem import MACCSkeys, Draw
 import torch
 
-#inp_QM9 = pd.read_csv('./data/train_QM9.txt', names=['SMILES'])
-#inp_QM9['INCHI'] = inp_QM9['SMILES'].apply(lambda x: Chem.MolToInchiKey(Chem.MolFromSmiles(x)))
-#inp_QM9 = inp_QM9.drop_duplicates(subset=['INCHI'], keep='first')
+inp_QM9 = pd.read_csv('./data/train_QM9.txt', names=['SMILES'])
+inp_QM9['INCHI'] = inp_QM9['SMILES'].apply(lambda x: Chem.MolToInchiKey(Chem.MolFromSmiles(x)))
+inp_QM9 = inp_QM9.drop_duplicates(subset=['INCHI'], keep='first')
 
-#img_QM9 = Draw.MolsToGridImage([Chem.MolFromSmiles(mol) for mol in list(inp_QM9['SMILES'])[:20]], molsPerRow=5,subImgSize=(500,500), legends=list(inp_QM9['SMILES'])[:20])
-#img_QM9
+img_QM9 = Draw.MolsToGridImage([Chem.MolFromSmiles(mol) for mol in list(inp_QM9['SMILES'])[:20]], molsPerRow=5,subImgSize=(500,500), legends=list(inp_QM9['SMILES'])[:20])
+img_QM9
 
 # Get QM9 Vocab
 from fast_jtnn.mol_tree import main_mol_tree

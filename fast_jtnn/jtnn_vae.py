@@ -58,8 +58,17 @@ class JTNNVAE(nn.Module):
 
     def rsample(self, z_vecs, W_mean, W_var):
         batch_size = z_vecs.size(0)
-        z_mean = W_mean(z_vecs)
+        z_mean = torch(z_vecs)
         z_log_var = -torch.abs(W_var(z_vecs)) #Following Mueller et al.
+        kl_loss = -0.5 * torch.sum(1.0 + z_log_var - z_mean * z_mean - torch.exp(z_log_var)) / batch_size
+        epsilon = create_var(torch.randn_like(z_mean))
+        z_vecs = z_mean + torch.exp(z_log_var / 2) * epsilon
+        return z_vecs, kl_loss
+
+    def test_rsample(self, z_vecs):
+        batch_size = z_vecs.size(0)
+        z_mean = torch.mean(z_vecs)
+        z_log_var = -torch.abs(torch.var(z_vecs)) #Following Mueller et al.
         kl_loss = -0.5 * torch.sum(1.0 + z_log_var - z_mean * z_mean - torch.exp(z_log_var)) / batch_size
         epsilon = create_var(torch.randn_like(z_mean))
         z_vecs = z_mean + torch.exp(z_log_var / 2) * epsilon
