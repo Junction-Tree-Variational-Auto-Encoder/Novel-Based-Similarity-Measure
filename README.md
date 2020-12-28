@@ -31,6 +31,3 @@ This repository contains the following directories:
 * `Old/molvae/` includes scripts for training our VAE model only. Please read `Old/molvae/README.md` for training our VAE model.
 * `Old/molopt/` includes scripts for jointly training our VAE and property predictors. Please read `Old/molopt/README.md` for details.
 * `Old/molvae/jtnn/` contains codes for model formulation. Please read `Old/molvae/README.md` for training our VAE model.
-
-# Contact
-Bibhash Chandra Mitra (bibhashm220896@gmail.com)
