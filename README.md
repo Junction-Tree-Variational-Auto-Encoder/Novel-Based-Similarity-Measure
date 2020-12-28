@@ -3,7 +3,7 @@ Python 3 Version of Fast Junction Tree Variational Autoencoder for Molecular Gra
 
 <img src="https://github.com/Bibyutatsu/FastJTNNpy3/blob/master/Old/paradigm.png" width="600">
 
-Implementation of our Junction Tree Variational Autoencoder [https://arxiv.org/abs/1802.04364](https://arxiv.org/abs/1802.04364)
+Implementation of the Junction Tree Variational Autoencoder [https://arxiv.org/abs/1802.04364](https://arxiv.org/abs/1802.04364)
 
 # Requirements
 * RDKit (version >= 2017.09)    : Tested on 2020.09.1.0
