@@ -42,4 +42,15 @@ module load scipy/1.4.1-python-3.7.7
 module load numpy/1.18.2-python-3.7.7-openblas-0.3.9
 pip3 install --user tqdm
 
-python3 main_clean.py
+python3 latent_1.py
+python3 latent_2.py
+python3 latent_3.py
+python3 latent_4.py
+python3 latent_5.py
+python3 latent_6.py
+python3 latent_7.py
+python3 latent_8.py
+python3 latent_9.py
+python3 latent_10.py
+python3 latent_11.py
+python3 latent_12.py
