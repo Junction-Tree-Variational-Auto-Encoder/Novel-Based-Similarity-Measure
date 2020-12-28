@@ -6,8 +6,8 @@ import torch
 
 inp = pd.read_csv('./data/train.txt', names=['SMILES'])
 
-inp['INCHI'] = inp['SMILES'].apply(lambda x: Chem.MolToInchiKey(Chem.MolFromSmiles(x)))
-inp = inp.drop_duplicates(subset=['INCHI'], keep='first')
+#inp['INCHI'] = inp['SMILES'].apply(lambda x: Chem.MolToInchiKey(Chem.MolFromSmiles(x)))
+#inp = inp.drop_duplicates(subset=['INCHI'], keep='first')
 
 from fast_molvae.sample import load_model
 model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19')
