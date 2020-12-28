@@ -30,5 +30,5 @@ norm_dis = np.random.normal(loc = nd1, scale = 0.1, size = 10)
 #z = torch.randn(1, 56//2).cuda() # a random tensor of size (1, latent_size / 2)
 out_df = model.decode(norm_dis, norm_dis, False)
 out_df = pd.DataFrame(out_df)
-out_df.to_csv('./new_mols/generated_molecules.txt')
+out_df.to_csv('./New_mols/generated_molecules.txt')
 
