@@ -7,6 +7,8 @@
 #BSUB -gpu "num=1:mode=exclusive_process"
 ### -- specify that we need 2GB of memory per core/slot -- 
 #BSUB -R "rusage[mem=32GB]"
+#BSUB -R "select[gpu32gb]"
+
 ### -- specify that we want the job to get killed if it exceeds 3 GB per core/slot -- 
 #BSUB -M 32GB
 ### -- set walltime limit: hh:mm -- 
@@ -32,25 +34,16 @@ python3 -m venv venv_1
 source venv_1/bin/activate
 module load rdkit/2019_03_1-python-3.7.3
 
-module load cuda/10.2
+
 nvidia-smi
+module load cuda/10.2
+
 /appl/cuda/10.2/samples/NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/deviceQuery
 
-pip install torch===1.7.0 torchvision===0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
+pip3 install torch===1.7.0 torchvision===0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
 module load pandas/1.0.3-python-3.7.7
 module load scipy/1.4.1-python-3.7.7
 module load numpy/1.18.2-python-3.7.7-openblas-0.3.9
 pip3 install --user tqdm
 
 python3 latent_1.py
-python3 latent_2.py
-python3 latent_3.py
-python3 latent_4.py
-python3 latent_5.py
-python3 latent_6.py
-python3 latent_7.py
-python3 latent_8.py
-python3 latent_9.py
-python3 latent_10.py
-python3 latent_11.py
-python3 latent_12.py
