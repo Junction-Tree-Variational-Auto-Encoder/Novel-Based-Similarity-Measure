@@ -16,4 +16,4 @@ out_tensor = model.encode_from_smiles(inp['SMILES'])
 out_numpy = out_tensor.cpu().data.numpy()
 out_df = pd.DataFrame(out_numpy)
 
-out_df.to_csv('./latent_space/encodedZINC.txt')
+out_df.to_csv('./latent_space/encoded_ZINC.txt')
