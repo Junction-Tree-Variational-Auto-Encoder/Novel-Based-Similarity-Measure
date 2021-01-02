@@ -66,9 +66,27 @@ class JTNNVAE(nn.Module):
         mol_var = -torch.abs(self.G_var(mol_vecs))
         return torch.cat([tree_vecs, mol_vecs], dim=-1), torch.cat([tree_mean, mol_var], dim=1), torch.cat([tree_var, mol_var], dim=1)
 
+    def logP_molecule(self, smiles_list, beta):
+        tree_batch = [MolTree(s) for s in smiles_list]
+        _, jtenc_holder, mpn_holder = tensorize(tree_batch, self.vocab, assm=False)
+        x_jtenc_holder = jtenc_holder
+        x_mpn_holder = mpn_holder
+        #x_jtmpn_holder = self.JTMPN(hidden_size, depthG)
+        x_batch = self.encode_test(smiles_list)
+        x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
+        z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
+        z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
+
+        kl_div = tree_kl + mol_kl
+        word_loss, topo_loss, word_acc, topo_acc = self.decoder(x_batch, z_tree_vecs)
+        #assm_loss, assm_acc = self.assm(x_batch, x_jtmpn_holder, z_mol_vecs, x_tree_mess)
+
+        return word_loss + topo_loss + beta * kl_div, kl_div.item(), word_acc, topo_acc, assm_acc
+
+
     def rsample(self, z_vecs, W_mean, W_var):
         batch_size = z_vecs.size(0)
-        z_mean = torch(z_vecs)
+        z_mean = torch.mean(z_vecs)
         z_log_var = -torch.abs(W_var(z_vecs)) #Following Mueller et al.
         kl_loss = -0.5 * torch.sum(1.0 + z_log_var - z_mean * z_mean - torch.exp(z_log_var)) / batch_size
         epsilon = create_var(torch.randn_like(z_mean))
@@ -88,7 +106,7 @@ class JTNNVAE(nn.Module):
         z_tree = torch.randn(1, self.latent_size).cuda()
         z_mol = torch.randn(1, self.latent_size).cuda()
         return self.decode(z_tree, z_mol, prob_decode)
-
+    
     def forward(self, x_batch, beta):
         x_batch, x_jtenc_holder, x_mpn_holder, x_jtmpn_holder = x_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)

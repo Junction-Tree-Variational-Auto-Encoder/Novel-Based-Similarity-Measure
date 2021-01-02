@@ -7,7 +7,7 @@ import torch
 #ZINC dataset
 data = pd.read_csv('./data/train.txt', names=['SMILES'])
 
-zinc_img = Draw.MolsToGridImage([Chem.MolFromSmiles(mol) for mol in list(data['SMILES'])[:20]], molsPerRow=5,subImgSize=(500,500), legends=list(data['SMILES'])[:20])
+zinc_img = Draw.MolsToGridImage([Chem.MolFromSmiles(mol) for mol in list(data['SMILES'])[18:24]], molsPerRow=2,subImgSize=(500,500), legends=list(data['SMILES'])[18:24])
 zinc_img
 open('display_data.png','wb').write(zinc_img.data)
 
