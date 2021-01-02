@@ -10,7 +10,6 @@ import numpy as np
 data_smiles = pd.read_csv('./data/train.txt', names=['SMILES'])
 
 
-
 from rdkit import DataStructs, Chem
 original_mol = Chem.RDKFingerprint(Chem.MolFromSmiles(data_smiles['SMILES'][3]))
 ms = []
@@ -56,15 +55,13 @@ data_smiles= data_smiles.sort_values(by =  'Tanimoto_Similarity', ascending = Fa
 data_smiles_copy = data_smiles
 data_smiles_copy = data_smiles_copy.sort_values(by = 'Euclidian_distance', ascending = False)
 import matplotlib.pyplot as plt
-import seaborn as sns
 
-
-plt.scatter(np.arange(0,len(data_smiles)),data_smiles_copy['Euclidian_distance'], s = 4, label = 'Euclidian distance')
 plt.scatter(np.arange(0,len(data_smiles)), data_smiles_copy['Tanimoto_Similarity'], s = 1, label = 'Tanimoto similarity')
+plt.scatter(np.arange(0,len(data_smiles)),data_smiles_copy['Euclidian_distance'], s = 4, label = 'Euclidian distance')
 plt.title('Similarities')
 plt.ylabel('Tanimoto Coefficient/ Euclidian distance')
 plt.xlabel('Molecules')
 plt.legend()
 
-import math 
-math.log(0.4)
+
+

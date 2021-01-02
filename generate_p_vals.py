@@ -7,16 +7,14 @@ import numpy as np
 
 
 data_tan_eu = pd.read_csv('./latent_space/shaakabraah/data_smiles_with_tanimoto_and_euclidian.txt').drop(columns={'Unnamed: 0'})
-
-
 data_p_vals = pd.read_csv('./latent_space/P_values.txt').drop(columns={'Unnamed: 0'}).rename(columns= {'0':'P_values'})
 
+
 data_p_vals['logp'] = np.log(data_p_vals['P_values'])
+
 data_p_vals['Tanimoto'] = data_tan_eu['Tanimoto_Similarity']
 data_p_vals['Euclidean_distance'] = data_tan_eu['Euclidian_distance']
 
-
-orig_mol = 4
 
 #(within 5% of value)
 cut_off_value = 0.05
