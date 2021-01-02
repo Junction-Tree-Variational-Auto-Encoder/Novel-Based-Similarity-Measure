@@ -11,13 +11,13 @@ from fast_molvae.sample import load_model
 model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19').cuda()
 
 logP_values = []
-for i in range(100):
-    logP, kl_div, _, _ = model.logP_molecule(data['SMILES'][i+9900:i+9901], 1)
+for i in range(size(data['SMILES'])):
+    logP, kl_div, _, _ = model.logP_molecule(data['SMILES'][i:i+1], 1)
     logP_values.append(logP.cpu().data.numpy())
 out_df = pd.DataFrame(logP_values)
-out_df.to_csv('./latent_space/logPvals/p_val_9900to10000.txt')
+out_df.to_csv('./latent_space/logPvals/p_vals.txt')
 
-out_vecs, out_mean, out_var = model.encode_test(data['SMILES'][9900:10000])
+out_mean = model.encode_to_latent(data['SMILES'])
 
 outm_numpy = out_mean.cpu().data.numpy()
 outm_df = pd.DataFrame(outm_numpy)
