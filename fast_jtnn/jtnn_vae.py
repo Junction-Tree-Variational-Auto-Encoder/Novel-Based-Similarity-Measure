@@ -71,17 +71,15 @@ class JTNNVAE(nn.Module):
         _, jtenc_holder, mpn_holder = tensorize(tree_batch, self.vocab, assm=False)
         x_jtenc_holder = jtenc_holder
         x_mpn_holder = mpn_holder
-        #x_jtmpn_holder = self.JTMPN(hidden_size, depthG)
-        x_batch = self.encode_test(smiles_list)
+        x_batch = tree_batch
         x_tree_vecs, x_tree_mess, x_mol_vecs = self.encode(x_jtenc_holder, x_mpn_holder)
         z_tree_vecs,tree_kl = self.rsample(x_tree_vecs, self.T_mean, self.T_var)
         z_mol_vecs,mol_kl = self.rsample(x_mol_vecs, self.G_mean, self.G_var)
 
         kl_div = tree_kl + mol_kl
         word_loss, topo_loss, word_acc, topo_acc = self.decoder(x_batch, z_tree_vecs)
-        #assm_loss, assm_acc = self.assm(x_batch, x_jtmpn_holder, z_mol_vecs, x_tree_mess)
 
-        return word_loss + topo_loss + beta * kl_div, kl_div.item(), word_acc, topo_acc, assm_acc
+        return word_loss + topo_loss - beta * kl_div, kl_div.item(), word_acc, topo_acc
 
 
     def rsample(self, z_vecs, W_mean, W_var):
