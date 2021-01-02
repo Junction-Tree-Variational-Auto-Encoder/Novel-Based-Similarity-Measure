@@ -10,8 +10,12 @@ data = pd.read_csv('./data/train.txt', names=['SMILES'])
 from fast_molvae.sample import load_model
 model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19').cuda()
 
-#test = model.logP_molecule(data['SMILES'][:1], 1)
-#out_tensor = model.encode_from_smiles(data['SMILES'][:10])
+logP_values = []
+for i in range(100):
+    logP, kl_div, _, _ = model.logP_molecule(data['SMILES'][i+9900:i+9901], 1)
+    logP_values.append(logP.cpu().data.numpy())
+out_df = pd.DataFrame(logP_values)
+out_df.to_csv('./latent_space/logPvals/p_val_9900to10000.txt')
 
 out_vecs, out_mean, out_var = model.encode_test(data['SMILES'][9900:10000])
 

@@ -75,9 +75,11 @@ import matplotlib.pyplot as plt
 
 x = np.array(logP_values)
 y = np.array(logP_QM9)
+
+x = np.log(p_vals)
 # the histogram of the data
-plot = plt.hist(x, bins=50, label='ZINC')
-plot = plt.hist(y, bins=50, label='QM9')
+plot = plt.hist(x, bins=20, label='ZINC')
+plot = plt.hist(y, bins=20, label='QM9')
 plt.legend()
 plt.xlabel('logP(x)')
 plt.ylabel('# Observations')
