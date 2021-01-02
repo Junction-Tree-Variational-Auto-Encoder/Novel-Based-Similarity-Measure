@@ -11,7 +11,7 @@ model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19')
 
 #out_tensor = model.encode_from_smiles(data['SMILES'][:10])
 
-out_vecs, out_mean, out_var = model.encode_test(data['SMILES'][:100])
+out_vecs, out_mean, out_var = model.encode_to_latent(data['SMILES'][:100])
 
 test = pd.read_csv('./latent_space/encoded_ZINC.txt').drop(columns={'Unnamed: 0'})
 
