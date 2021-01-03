@@ -12,3 +12,7 @@ Implementation of the Junction Tree Variational Autoencoder [https://arxiv.org/a
 ![Optional Text](../master/myFolder/conda_list.png)
 
 ![Screenshot](conda_list.png)
+
+
+
+<img src="https://github.com/Junction-Tree-Variational-Auto-Encoder/NOVEL-JUNCTION-TREE-NEURAL-NETWORK-BASED-SIMILARITY-MEASURE/MyFolder/conda_list.png" width="600">
