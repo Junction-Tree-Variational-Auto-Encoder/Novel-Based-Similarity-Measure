@@ -6,4 +6,6 @@ Python 3 Version of Fast Junction Tree Variational Autoencoder for Molecular Gra
 
 Implementation of the Junction Tree Variational Autoencoder [https://arxiv.org/abs/1802.04364](https://arxiv.org/abs/1802.04364)
 
-To install the environment correctly with all packages, see MyFolder/conda_list.png and complete the same installments. 
+To install the environment correctly with all packages, see the link below and complete the same installments. 
+
+<img src= "https://github.com/Junction-Tree-Variational-Auto-Encoder/NOVEL-JUNCTION-TREE-NEURAL-NETWORK-BASED-SIMILARITY-MEASURE/tree/main/MyFolder/conda_list.png" width="400">
