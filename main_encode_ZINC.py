@@ -12,21 +12,3 @@ model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19')
 out_latent = model.encode_to_latent(data['SMILES'])
 out_df = pd.DataFrame(out_latent.cpu().data.numpy())
 out_out.to_csv('./latent_space/encoded_ZINC_data.txt')
-
-
-z_t = out_mean[:1,0:28].cuda()
-z_mol = out_mean[:1,28:56].cuda()
-
-testing = model.decode(z_t, z_mol, True)
-
-model_out = []
-for i in range(1, 20+1):
-    z_t = out_mean[i-1:i,0:28].cuda()
-    z_mol = out_mean[i-1:i,28:56].cuda()
-    out = model.decode(z_t, z_mol, False)
-    model_out.append(out)
-
-out_numpy = out_tensor.cpu().data.numpy()
-out_df = pd.DataFrame(out_numpy)
-
-out_df.to_csv('./latent_space/encoded_ZINC.txt')
