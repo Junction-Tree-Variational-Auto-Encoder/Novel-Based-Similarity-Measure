@@ -7,14 +7,12 @@ import torch
 data = pd.read_csv('./data/train.txt', names=['SMILES'])
 
 from fast_molvae.sample import load_model
-model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19')
+model = load_model('./data/vocab.txt', './fast_molvae/vae_model/model.epoch-19').cuda()
 
-out_latent = model.encode_to_latent(data['SMILES'][9900:10000])
-out_out = pd.DataFrame(out_latent.cpu().data.numpy())
-out_out.to_csv('./latent_space/encodedZINC_9900to10000_mean.txt')
+out_latent = model.encode_to_latent(data['SMILES'])
+out_df = pd.DataFrame(out_latent.cpu().data.numpy())
+out_out.to_csv('./latent_space/encoded_ZINC_data.txt')
 
-
-test = pd.read_csv('./latent_space/encoded_ZINC.txt').drop(columns={'Unnamed: 0'})
 
 z_t = out_mean[:1,0:28].cuda()
 z_mol = out_mean[:1,28:56].cuda()
