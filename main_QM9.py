@@ -23,7 +23,7 @@ data_QM9 = data_QM9.drop_duplicates(subset=['INCHI'], keep='first')
 
 img_QM9 = Draw.MolsToGridImage([Chem.MolFromSmiles(mol) for mol in list(data_QM9['SMILES'])[:20]], molsPerRow=5,subImgSize=(500,500), legends=list(data_QM9['SMILES'])[:20])
 img_QM9
-open('display_data_QM9.png','wb').write(img_QM9.data)
+open('./sh_and_pics/display_data_QM9.png','wb').write(img_QM9.data)
 
 data_QM9['SMILES'].to_csv('./data/train_QM9.txt', header=False, index=False)
 
