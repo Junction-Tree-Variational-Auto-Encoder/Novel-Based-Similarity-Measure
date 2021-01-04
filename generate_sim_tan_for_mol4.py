@@ -5,12 +5,15 @@ from rdkit.Chem import MACCSkeys, Draw
 import torch
 import numpy as np 
 
-new_mol_data = pd.read_csv('./New_mols/generated_molecules4.txt', names=['SMILES'])
-new_mol = new_mol_data['SMILES'][0]
+
 
 
 data_smiles = pd.read_csv('./data/train.txt', names=['SMILES'])
 
+new_mol = data_smiles['SMILES'][4]
+
+
+#### Create Tanimoto sim for chosen molecule
 
 from rdkit import DataStructs, Chem
 original_mol = Chem.RDKFingerprint(Chem.MolFromSmiles(new_mol))
@@ -18,15 +21,16 @@ ms = []
 for i in range(len(data_smiles)):
     ms.append(Chem.MolFromSmiles(data_smiles['SMILES'][i]))
 
-#ms = [Chem.MolFromSmiles(smiles[0]), Chem.MolFromSmiles(smiles[1]), Chem.MolFromSmiles(smiles[2]), Chem.MolFromSmiles(smiles[3]), Chem.MolFromSmiles(smiles[4])]
 fps = [Chem.RDKFingerprint(x) for x in ms]
 tan_sim = []
 for i in range(len(fps)): 
     tan_sim.append(DataStructs.FingerprintSimilarity(original_mol,fps[i]))
 
 
+####### Create Euclidean distance for for ZINC to chosen molecule
 
-data = pd.read_csv('./latent_space/encoded_ZINC_mean.txt').drop(columns={'Unnamed: 0'})
+
+data = pd.read_csv('./latent_space/encoded_ZINC_data.txt').drop(columns={'Unnamed: 0'})
 
 def euclid(x,y):
     sqrtsum= 0
@@ -50,7 +54,7 @@ for i in range(len(data)):
 data_smiles['Tanimoto_Similarity'] = tan_sim
 data_smiles['Euclidian_distance'] = euc_list
 
-data_smiles.to_csv('./latent_space/shaakabraah/data_smiles_with_tanimoto_and_euclidian.txt')
+data_smiles.to_csv('./latent_space/data_smiles_with_tanimoto_and_euclidian.txt')
 
 
 data_smiles= data_smiles.sort_values(by =  'Tanimoto_Similarity', ascending = False)

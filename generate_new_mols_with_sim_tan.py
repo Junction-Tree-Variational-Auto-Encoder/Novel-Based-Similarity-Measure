@@ -5,7 +5,7 @@ from rdkit.Chem import MACCSkeys, Draw
 import torch
 import numpy as np 
 
-
+# New Molecule
 
 data = pd.read_csv('./data/train.txt', names=['SMILES'])
 
@@ -33,10 +33,12 @@ for i in range(1):
 # exporting the molecules
 
 out_df = pd.DataFrame(smiles, columns = ['SMILES'])
-out_df.to_csv('./New_mols/generated_molecules4.txt')
+out_df.to_csv('./New_mols/generated_moleculesX.txt')
+
+
+
+## Similarity tanimoto
 new_mol = out_df['SMILES'][0]
-
-
 data_smiles = pd.read_csv('./data/train.txt', names=['SMILES'])
 
 orig_mol = data_smiles['SMILES'][3]
@@ -47,8 +49,10 @@ orig_mol_fp= Chem.RDKFingerprint(Chem.MolFromSmiles(data_smiles['SMILES'][3]))
 tan_sim = DataStructs.FingerprintSimilarity(orig_mol_fp, new_mol_fp)
 
 
+# Similarity euclidean
 
 data_latent = pd.read_csv('./latent_space/encoded_ZINC_mean.txt').drop(columns={'Unnamed: 0'})
+
 
 def euclid(x,y):
     sqrtsum= 0
@@ -69,4 +73,5 @@ data_smiles['Tanimoto_Similarity'] = tan_sim
 data_smiles['Euclidian_distance'] = euc_list
 
 data_smiles.to_csv('./latent_space/shaakabraah/data_smiles_with_tanimoto_and_euclidian_to_new_mol.txt')
+
 
