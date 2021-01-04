@@ -16,15 +16,14 @@ data_p_vals['Tanimoto'] = data_tan_eu['Tanimoto_Similarity']
 data_p_vals['Euclidean_distance'] = data_tan_eu['Euclidian_distance']
 
 
-#(within 5% of value)
-cut_off_value = 0.05
+#
+cut_off_value = 0.50
 orig_mol =  data_p_vals.iloc[3,1]
 
-#Difference in %. where 0% is close and 100% is completely different
-data_p_vals['Cut off'] =np.abs(data_p_vals['logp'] -  orig_mol) /  orig_mol
-
-data_p_cut = data_p_vals[(data_p_vals['Cut off']<=  cut_off_value)]
-
+#
+data_p_vals['cut_off'] =np.abs(data_p_vals['logp'] -  orig_mol)
+data_p_vals['novel_sim'] = data_p_vals['Euclidean_distance']
+data_p_vals['novel_sim'].loc[data_p_vals['cut_off'] > cut_off_value] = 0
 
 import matplotlib.pyplot as plt
 
