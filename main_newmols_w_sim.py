@@ -70,4 +70,4 @@ euc_dist = euclid( torch.tensor(data_latent.iloc[3,:]).cuda().unsqueeze_(0) ,  c
 data_smiles['Tanimoto_Similarity'] = tan_sim
 data_smiles['Euclidian_distance'] = euc_list
 
-data_smiles.to_csv('./latent_space/shaakabraah/data_smiles_with_tanimoto_and_euclidian_to_new_mol.txt')
+data_smiles.to_csv('./latent_space/data_smiles_with_tanimoto_and_euclidian_to_new_mol.txt')
