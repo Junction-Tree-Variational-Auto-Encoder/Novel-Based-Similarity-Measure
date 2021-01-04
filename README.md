@@ -4,7 +4,7 @@ In this repository we explore the similarity measurement of the newly generated 
 Use Tutorial_sim.ipynb to see main results of the project. We emphasize, that it can be computationally heavy. 
 
 
-<img src="https://github.com/Bibyutatsu/FastJTNNpy3/blob/master/Old/paradigm.png" width="600">
+<img src="https://github.com/Bibyutatsu/FastJTNNpy3/blob/master/Old/paradigm.png" width="400">
 
 
 Implementation of the Junction Tree Variational Autoencoder [https://arxiv.org/abs/1802.04364](https://arxiv.org/abs/1802.04364)
