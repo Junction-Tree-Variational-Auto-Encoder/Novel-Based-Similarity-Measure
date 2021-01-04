@@ -61,13 +61,14 @@ data_smiles_copy = data_smiles
 data_smiles_copy = data_smiles_copy.sort_values(by = 'Euclidian_distance', ascending = False)
 import matplotlib.pyplot as plt
 
-ax = plt.scatter(np.arange(0,len(data_smiles)), data_smiles_copy['Tanimoto_Similarity'], s = 1, label = 'Tanimoto similarity')
-ax = plt.scatter(np.arange(0,len(data_smiles)),data_smiles_copy['Euclidian_distance'], s = 4, label = 'Euclidian distance')
-ax =plt.title('Similarities')
-ax =plt.ylabel('Tanimoto Coefficient/ Euclidian distance')
-ax =plt.xlabel('Molecules')
-ax =plt.legend()
+ax = plt.figure()
+plt.scatter(np.arange(0,len(data_smiles)), data_smiles_copy['Tanimoto_Similarity'], s = 1, label = 'Tanimoto similarity')
+plt.scatter(np.arange(0,len(data_smiles)),data_smiles_copy['Euclidian_distance'], s = 4, label = 'Euclidian distance')
+plt.title('Similarities')
+plt.ylabel('Tanimoto Coefficient/ Euclidian distance')
+plt.xlabel('Molecules')
+plt.legend()
 
-plt.savefig('tarx.png')
+ax.savefig('tarx.png')
 
 

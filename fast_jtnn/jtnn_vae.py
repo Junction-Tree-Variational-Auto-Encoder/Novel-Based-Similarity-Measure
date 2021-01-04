@@ -78,8 +78,8 @@ class JTNNVAE(nn.Module):
 
         kl_div = tree_kl + mol_kl
         word_loss, topo_loss, word_acc, topo_acc = self.decoder(x_batch, z_tree_vecs)
-
-        return word_loss + topo_loss - beta * kl_div, kl_div.item(), word_acc, topo_acc
+        elbo = torch.log(word_loss + topo_loss) - beta * kl_div.itm()
+        return elbo
 
 
     def rsample(self, z_vecs, W_mean, W_var):
