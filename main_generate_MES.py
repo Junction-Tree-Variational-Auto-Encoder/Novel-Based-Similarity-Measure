@@ -26,9 +26,11 @@ data_p_vals['Euclidean_distance'] = data_tan_eu['Euclidian_distance']
 
 #
 cut_off_value = 0.50
-orig_mol_logP =  data_p_vals.iloc[3,1]
+orig_mol_logP =  data_p_vals.iloc[3,0]
 
 #
 data_p_vals['cut_off'] =np.abs(data_p_vals['logp'] -  orig_mol_logP)
 data_p_vals['novel_sim'] = data_p_vals['Euclidean_distance']
 data_p_vals['novel_sim'].loc[data_p_vals['cut_off'] > cut_off_value] = 0
+
+data_p_vals.to_csv('./latent_space/measures_combined.txt')
