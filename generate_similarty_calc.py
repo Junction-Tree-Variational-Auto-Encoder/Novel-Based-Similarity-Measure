@@ -10,8 +10,7 @@ data_tan_eu = pd.read_csv('./latent_space/data_smiles_with_tanimoto_and_euclidia
 
 
 
-data_p_vals = pd.read_csv('./latent_space/logP_values.txt').drop(columns={'Unnamed: 0'}).rename(columns= {'0':'logp'})
-
+data_p_vals = pd.read_csv('./latent_space/logP_values.txt').drop(columns={'Unnamed: 0'})
 import matplotlib.pyplot as plt
 fig = plt.figure()
 plt.hist(data_p_vals['logp'], bins= 100)
