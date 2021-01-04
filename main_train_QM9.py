@@ -4,7 +4,7 @@ from rdkit import DataStructs, Chem
 from rdkit.Chem import MACCSkeys, Draw
 import torch
 
-QM9 = pd.read_csv('C:\\Users\\Chris\\Documents\\GitHub\\JTVAE-on-Molecular-Structures\\python3\\fast_molvae\\data\\QM9\\gdb9_prop_smiles.csv', header=0)\
+QM9 = pd.read_csv('./data/train_QM9.txt', header=0)\
     .rename(columns={'smiles':'SMILES'})
 df_smiles = QM9['SMILES']
 c_smiles = []
