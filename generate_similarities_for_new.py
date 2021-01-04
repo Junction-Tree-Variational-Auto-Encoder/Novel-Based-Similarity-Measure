@@ -5,10 +5,8 @@ from rdkit.Chem import MACCSkeys, Draw
 import torch
 import numpy as np 
 
-new_mol = '[NH2+]=C1CC2(CN1)C1=[NH+]CCCCC1C21CS2(CCS1)CCS1(CCCN1)CC2'
-
-
-
+new_mol_data = pd.read_csv('./New_mols/generated_molecules4.txt', names=['SMILES'])
+new_mol = new_mol_data['SMILES'][0]
 
 
 data_smiles = pd.read_csv('./data/train.txt', names=['SMILES'])
@@ -16,7 +14,6 @@ data_smiles = pd.read_csv('./data/train.txt', names=['SMILES'])
 
 from rdkit import DataStructs, Chem
 original_mol = Chem.RDKFingerprint(Chem.MolFromSmiles(new_mol))
-#original_mol = Chem.RDKFingerprint(Chem.MolFromSmiles(data_smiles['SMILES'][3]))
 ms = []
 for i in range(len(data_smiles)):
     ms.append(Chem.MolFromSmiles(data_smiles['SMILES'][i]))
@@ -61,13 +58,12 @@ data_smiles_copy = data_smiles
 data_smiles_copy = data_smiles_copy.sort_values(by = 'Euclidian_distance', ascending = False)
 import matplotlib.pyplot as plt
 
-ax = plt.scatter(np.arange(0,len(data_smiles)), data_smiles_copy['Tanimoto_Similarity'], s = 1, label = 'Tanimoto similarity')
-ax = plt.scatter(np.arange(0,len(data_smiles)),data_smiles_copy['Euclidian_distance'], s = 4, label = 'Euclidian distance')
-ax =plt.title('Similarities')
-ax =plt.ylabel('Tanimoto Coefficient/ Euclidian distance')
-ax =plt.xlabel('Molecules')
-ax =plt.legend()
+plt.scatter(np.arange(0,len(data_smiles)), data_smiles_copy['Tanimoto_Similarity'], s = 1, label = 'Tanimoto similarity')
+plt.scatter(np.arange(0,len(data_smiles)),data_smiles_copy['Euclidian_distance'], s = 4, label = 'Euclidian distance')
+plt.title('Similarities')
+plt.ylabel('Tanimoto Coefficient/ Euclidian distance')
+plt.xlabel('Molecules')
+plt.legend()
 
-plt.savefig('tarx.png')
 
 
