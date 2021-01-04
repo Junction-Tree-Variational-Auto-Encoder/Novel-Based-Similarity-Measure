@@ -18,11 +18,11 @@ smiles = []
 latent_space = []
 
 
-for i in range(10):
+for i in range(1):
     noise = np.random.normal(1,0.1, 56)
     noise = np.expand_dims(noise,axis = 0)
     noise = torch.from_numpy(noise).float().cuda()
-    out_latent_noise = out_latent*noise
+    out_latent_noise=out_latent*noise
 
     z_t = out_latent_noise[0:1,0:28].cuda()
     z_mol = out_latent_noise[0:1,28:56].cuda()
@@ -33,11 +33,6 @@ for i in range(10):
 # exporting the molecules
 
 out_df = pd.DataFrame(smiles, columns = ['SMILES'])
-out_latent = pd.DataFrame(latent_space, columns = ['Latent space'])
-out_df['latent_space'] = out_latent
-out_latent.to_csv('./New_mols/generated_molecules3.txt')
-
-
-
+out_df.to_csv('./generated_moleculesX.txt')
 
 
